@@ -9,16 +9,21 @@ let pronoun = ["the", "our"];
 let adj = ["great", "big"];
 let noun = ["jogger", "racoon"];
 let dotX = [".com", ".net", ".us", ".io"];
-
+let domainText = "";
+function makeDomains() {
+  pronoun.map(pronounEl => {
+    adj.map(adjEl => {
+      noun.map(nounEl => {
+        dotX.map((dotXEl, index) => {
+          domainText += `<li class="list-group-item ${
+            index % 2 === 0 ? "bg-success text-white" : ""
+          }">${pronounEl}${adjEl}${nounEl}${dotXEl}</li>`;
+        });
+      });
+    });
+  });
+  document.getElementById("domain").innerHTML = domainText;
+}
 window.onload = function() {
-  //write your code here
-  for (const pronounEl of pronoun) {
-    for (const adjEl of adj) {
-      for (const nounEl of noun) {
-        for (const dotXEl of dotX) {
-          console.log(pronounEl + adjEl + nounEl + dotXEl);
-        }
-      }
-    }
-  }
+  makeDomains();
 };
